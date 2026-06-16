@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tokenizer Playground — see how an LLM reads your text</title>
+  <meta name="description" content="See how a large language model splits text into tokens, using the real GPT-4 (cl100k_base) byte-pair encoding, live in your browser." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='15' fill='%236ea8fe'/><path d='M16 1a15 15 0 000 30z' fill='%238b7cff'/></svg>" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo">◕</span>
+        <div>
+          <h1>Tokenizer Playground</h1>
+          <p class="tagline">See how an LLM actually reads your text — split into <strong>tokens</strong> with the real GPT-4 (<code>cl100k_base</code>) byte-pair encoding, live in your browser.</p>
+        </div>
+      </div>
+      <a class="ghlink" id="repo-link" href="#" target="_blank" rel="noopener">&lt;/&gt; Source</a>
+    </header>
+
+    <section class="panel">
+      <textarea id="input" rows="4" spellcheck="false">Tokenization is how an LLM turns text into numbers. Notice how " tokenization", spaces, and emojis 🚀 get split — and that GPT-4o counts 1,234 as separate pieces!</textarea>
+      <div class="stats">
+        <div class="stat"><span id="tok-count">0</span><label>tokens</label></div>
+        <div class="stat"><span id="char-count">0</span><label>characters</label></div>
+        <div class="stat"><span id="ratio">0</span><label>chars / token</label></div>
+        <div class="toggle">
+          <button id="view-text" class="seg active">Pieces</button>
+          <button id="view-ids" class="seg">Token IDs</button>
+        </div>
+      </div>
+      <div class="status" id="status">Loading tokenizer…</div>
+    </section>
+
+    <main class="output" id="output"></main>
+
+    <footer class="pagefoot">
+      <span>Uses <a href="https://github.com/niieani/gpt-tokenizer" target="_blank" rel="noopener">gpt-tokenizer</a> (<code>cl100k_base</code>, the GPT-3.5/GPT-4 encoding). Everything runs locally — your text never leaves the page.</span>
+    </footer>
+  </div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
